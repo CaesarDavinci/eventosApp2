@@ -30,35 +30,31 @@
 
 	<div th:each="evento : ${evento}" class="container">
 		<div class="row">
-			<p>
-				Nome: <span th:text="${evento.nome}"></span>
-			</p>
-			<p>
-				Local: <span th:text="${evento.local}"></span>
-			</p>
-			<p>
-				Data: <span th:text="${evento.data}"></span>
-			</p>
-			<p>
-				Horário: <span th:text="${evento.hora}"></span>
-			</p>
+			<p>Nome: <span th:text="${evento.nome}"></span></p>
+			<p>Local: <span th:text="${evento.local}"></span></p>
+			<p>Data: <span th:text="${evento.data}"></span></p>
+			<p>Horário: <span th:text="${evento.hora}"></span></p>
 		</div>
 
-		<form method="post">
-			Nome: <input type="text" value="" name="nomeConvidado" /> RG: <input
-				type="text" value="" name="rg" />
+		<th:block th:include="mensagemValidacao"></th:block>
+		<div class="container formConvidado">
+		<form method="post" th:object="${convidado}">
+			Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"/>
+			Rg: <input type="text" value="" name="rg" placeholder="AA-000.000.000" class="validate"/>
 			<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
 		</form>
+		</div>
 		
 		<h5>Lista de Convidados: </h5>
 		<div class="container" th:each="convidado : ${convidados}">
 			<div class="row">
 				<div class="input.field col s6">
-					<p><span th:text="${convidado.nomeConvidado}"></span></p>
+					<p>Nome: <span th:text="${convidado.nomeConvidado}"></span></p>
 				</div><!-- /input.field col s6 -->
-				<div class="input.field col s3">
-					<p><span th:text="${convidado.rg}"></span></p>
-				</div><!-- /input.field col s3 -->
+				<div class="input.field col s6">
+					<p>RG: <span th:text="${convidado.rg}"></span></p>
+				</div><!-- /rg -->
+				
 			</div><!-- /row -->
 		</div><!-- /container-convidados -->
 		
