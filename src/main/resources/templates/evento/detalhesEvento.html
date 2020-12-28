@@ -17,49 +17,65 @@
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 
-	<h3>Evento</h3>
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Evento</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="/eventos" class="waves-effect waves-light btn"><i
+							class="material-icons left">add_circle_outline</i>Lista de
+							eventos</a></li>
 
-	<h5>
-		<a href="/eventos" class="waves-effect waves-light btn"><i
-			class="material-icons left">add_circle_outline</i>Lista de eventos</a>
-	</h5>
+				</ul>
+			</div>
+		</nav>
 
-	<div th:each="evento : ${evento}" class="container">
+	</header>
+
+	<div th:each="evento : ${evento}" class="container detalhesEvento">
+	<h5>Detalhes do Evento</h5>
 		<div class="row">
 			<p>Nome: <span th:text="${evento.nome}"></span></p>
 			<p>Local: <span th:text="${evento.local}"></span></p>
 			<p>Data: <span th:text="${evento.data}"></span></p>
 			<p>Horário: <span th:text="${evento.hora}"></span></p>
 		</div>
-
-		<th:block th:include="mensagemValidacao"></th:block>
-		<div class="container formConvidado">
-		<form method="post" th:object="${convidado}">
-			Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"/>
-			Rg: <input type="text" value="" name="rg" placeholder="AA-000.000.000" class="validate"/>
-			<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
-		</form>
-		</div>
-		
-		<h5>Lista de Convidados: </h5>
-		<div class="container" th:each="convidado : ${convidados}">
-			<div class="row">
-				<div class="input.field col s6">
-					<p>Nome: <span th:text="${convidado.nomeConvidado}"></span></p>
-				</div><!-- /input.field col s6 -->
-				<div class="input.field col s6">
-					<p>RG: <span th:text="${convidado.rg}"></span></p>
-				</div><!-- /rg -->
-				
-			</div><!-- /row -->
-		</div><!-- /container-convidados -->
-		
 		
 	</div><!-- /container -->
+
+		<th:block th:include="mensagemValidacao"></th:block>
+
+		<div class="container formConvidado">
+			<form method="post" th:object="${convidado}">
+				Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo" /> 
+				Rg: <input type="text" value="" name="rg" placeholder="AA-000.000.000" class="validate" />
+				<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+			</form>
+		</div>
+
+		<table class="container tabelaConvidado">
+		<thead>
+			<tr>
+				<th>Nome Convidado</th>
+				<th>RG</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="convidado : ${convidados}">
+				<td><span th:text="${convidado.nomeConvidado}"></span></td>
+				<td><span th:text="${convidado.rg}"></span></td>
+				
+			</tr>
+		</tbody>
+	</table>
+
+
+	
 
 
 	<!--JavaScript at end of body for optimized loading-->
