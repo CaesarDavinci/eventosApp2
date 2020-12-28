@@ -69,6 +69,15 @@ public class EventoController {
 		
 	}
 	
+	@RequestMapping("/deletarEvento")
+	public String deletarEvento(long codigo){
+		Evento evento = er.findByCodigo(codigo);
+		Iterable<Convidado> convidados= cr.findByEvento(evento);
+		cr.deleteAll(convidados);
+		er.delete(evento);
+		
+		return "redirect:eventos";
+	}
 	
 	
 	@RequestMapping(value="/{codigo}", method=RequestMethod.POST)
@@ -84,13 +93,7 @@ public class EventoController {
 		return "redirect:/{codigo}";
 	}
 	
-	@RequestMapping("/deletarEvento")
-	public String deletarEvento(long codigo){
-		Evento evento = er.findByCodigo(codigo);
-		er.delete(evento);
-		return "redirect:eventos";
-	}
-	
+		
 	@RequestMapping("/deletarConvidado")
 	public String deletarConvidado(String rg){
 		Convidado convidado = cr.findByRg(rg);
