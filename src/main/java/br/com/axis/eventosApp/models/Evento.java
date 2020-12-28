@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,13 +25,13 @@ public class Evento implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	@NotBlank
+
 	private String nome;
-	@NotBlank
+
 	private String local;
-	@NotBlank
+
 	private String data;
-	@NotBlank
+
 	private String hora;
 	
 	@OneToMany

@@ -8,5 +8,5 @@ import br.com.axis.eventosApp.models.Evento;
 public interface ConvidadoRepository extends CrudRepository<Convidado, String>{
 
 		Iterable<Convidado> findByEvento(Evento evento);
-
+		Convidado findByRg(String rg);
 }
