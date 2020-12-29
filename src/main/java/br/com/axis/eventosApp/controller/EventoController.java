@@ -48,7 +48,7 @@ public class EventoController {
 	/*procura de eventos*/
 	@RequestMapping("/eventos")
 	public ModelAndView listaEventos() {
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("listaEventos");
 		Iterable<Evento> eventos = er.findAll();        //busca todos os eventos
 		mv.addObject("eventos", eventos);
 		
